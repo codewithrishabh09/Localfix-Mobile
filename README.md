@@ -1,56 +1,183 @@
-# Welcome to your Expo app 👋
+# 📱 LocalFix Mobile 🚧
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+LocalFix is a civic issue reporting mobile application that helps citizens report local problems such as potholes, garbage, broken streetlights, and water leakage. 🏙️
 
-## Get started
+Citizens can submit a complaint with a photo, location, category, and description. The system can detect nearby existing complaints to reduce duplicate reports and allow users to upvote existing issues. 👍
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🚀 Features
 
-2. Start the app
+- 🔐 User registration and login
+- 📢 Report local civic issues
+- 📸 Upload issue photos
+- 📍 Capture GPS location
+- 🏷️ Select complaint category
+- 📋 View submitted complaints
+- 🗺️ View complaints on a map
+- 👍 Upvote existing nearby complaints
+- 🔄 Track complaint status
+- 🔔 Receive complaint status updates
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🏗️ Project Architecture
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```text
+Mobile App
+   ↓
+FastAPI Backend
+   ↓
+PostgreSQL Database
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+The mobile application communicates with the backend through REST APIs. The mobile app never directly accesses the database. 🔒
 
-### Other setup steps
+---
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## 🛠️ Tech Stack
 
-## Learn more
+- ⚛️ React Native
+- 📦 Expo
+- 🔷 TypeScript
+- 🧭 Expo Router
+- ⚡ FastAPI
+- 🐘 PostgreSQL
+- 🔑 JWT Authentication
+- 🐙 Git & GitHub
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 📱 Mobile Application
 
-## Join the community
+The mobile application is responsible for:
 
-Join our community of developers creating universal apps.
+- 🔐 Authentication
+- 📝 Complaint creation
+- 📸 Photo upload
+- 📍 Location capture
+- 📋 Complaint listing
+- 🗺️ Map-based complaint viewing
+- 🔄 Complaint status tracking
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 📂 Project Structure
+
+```text
+localfix-mobile/
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── constants/
+│   ├── hooks/
+│   └── ...
+├── assets/
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+## 🗺️ Development Roadmap
+
+### 🥇 Phase 1 — Mobile MVP
+
+- [x] 📦 Expo project setup
+- [x] 🔷 TypeScript setup
+- [x] 🧭 Expo Router setup
+- [ ] 🔐 Login & Registration
+- [ ] 🏠 Home screen
+- [ ] 📢 Report complaint
+- [ ] 📸 Photo upload
+- [ ] 📍 GPS location
+- [ ] 🔌 Backend integration
+- [ ] 🗺️ Map
+- [ ] 📄 Complaint details
+
+### 🥈 Phase 2 — Duplicate Detection
+
+- [ ] 📍 Nearby complaint detection
+- [ ] 🏷️ Category-based matching
+- [ ] 💡 Existing complaint suggestions
+- [ ] 👍 Upvote functionality
+
+### 🥉 Phase 3 — Complaint Tracking
+
+- [ ] 📝 Reported
+- [ ] 🔧 In Progress
+- [ ] ✅ Resolved
+- [ ] 🔔 Status notifications
+
+### 🏛️ Phase 4 — Admin Dashboard
+
+Municipal staff will be able to:
+
+- [ ] 👀 View complaints
+- [ ] 🔽 Filter complaints
+- [ ] 🛠️ Start work on complaints
+- [ ] 🔄 Update complaint status
+- [ ] 📦 Manage resolved issues
+
+---
+
+## 💻 Run Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Expo development server:
+
+```bash
+npx expo start
+```
+
+You can then run the application using:
+
+- 📲 Expo Go
+- 🤖 Android Emulator
+- 🍎 iOS Simulator
+- 🌐 Web Browser
+
+---
+
+## 🧑‍💻 Development Approach
+
+LocalFix is being developed incrementally using a real-world engineering workflow:
+
+```text
+Requirement
+    ↓
+Architecture
+    ↓
+API & Database Design
+    ↓
+Implementation
+    ↓
+Testing
+    ↓
+Git Commit
+    ↓
+Next Feature
+```
+
+---
+
+## 📌 Current Status
+
+**Project Stage:** 🌱 Mobile foundation setup
+
+The Expo React Native project has been created and the development environment is ready. ✅
+
+More features will be implemented step-by-step. 🚀
+
+## 👨‍💻 Author
+
+**Rishabh**
+
+- 🐙 GitHub: [github.com/YOUR_USERNAME](https://github.com/codewithrishabh09)
+- 💼 LinkedIn: [linkedin.com/in/YOUR_LINKEDIN_ID](https://www.linkedin.com/in/rishabh-dwivedi-855857374/)
