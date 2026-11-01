@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 📱 LocalFix Mobile 🚧
 
 LocalFix is a civic issue reporting mobile application that helps citizens report local problems such as potholes, garbage, broken streetlights, and water leakage. 🏙️
@@ -185,5 +184,4 @@ More features will be implemented step-by-step. 🚀
 rishabh-dwivedi-855857374/)
 =======
 # Localfix-Mobile
->>>>>>> 0bed1fb1984db6e0cc7718bc20da23054a698c7f
 
