@@ -180,4 +180,5 @@ More features will be implemented step-by-step. 🚀
 **Rishabh**
 
 - 🐙 GitHub: [github.com/YOUR_USERNAME](https://github.com/codewithrishabh09)
-- 💼 LinkedIn: [linkedin.com/in/YOUR_LINKEDIN_ID](https://www.linkedin.com/in/rishabh-dwivedi-855857374/)
+- 💼 LinkedIn: [linkedin.com/in/YOUR_LINKEDIN_ID](https://www.linkedin.com/in/
+rishabh-dwivedi-855857374/)
