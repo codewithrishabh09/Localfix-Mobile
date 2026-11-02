@@ -174,6 +174,3 @@ Next Feature
 The Expo React Native project has been created and the development environment is ready. ✅
 
 More features will be implemented step-by-step. 🚀
-
-
-
