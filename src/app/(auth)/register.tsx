@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 
+import LocalFixBrand from "@/components/brand/LocalFixBrand";
 import {
   colors,
   radius,
@@ -27,15 +28,7 @@ export default function RegisterScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.brandSection}>
-          <View style={styles.logo}>
-            <Text style={styles.logoText}>L</Text>
-          </View>
-
-          <Text style={styles.brand}>LocalFix</Text>
-
-          <Text style={styles.tagline}>
-            Make your neighborhood better.
-          </Text>
+          <LocalFixBrand centered />
         </View>
 
         <View style={styles.formSection}>
@@ -131,34 +124,6 @@ const styles = StyleSheet.create({
   brandSection: {
     alignItems: "center",
     marginBottom: spacing.xxxl,
-  },
-
-  logo: {
-    width: 64,
-    height: 64,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.primary,
-    borderRadius: radius.xl,
-    marginBottom: spacing.md,
-  },
-
-  logoText: {
-    color: colors.white,
-    fontSize: 30,
-    fontWeight: "700",
-  },
-
-  brand: {
-    color: colors.text,
-    fontSize: 30,
-    fontWeight: "700",
-  },
-
-  tagline: {
-    marginTop: spacing.xs,
-    color: colors.textSecondary,
-    ...typography.body,
   },
 
   formSection: {
