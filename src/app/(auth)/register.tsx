@@ -2,207 +2,179 @@ import { Link } from "expo-router";
 import {
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import LocalFixBrand from "@/components/brand/LocalFixBrand";
-import {
-  colors,
-  radius,
-  spacing,
-  typography,
-} from "@/constants/theme";
+import AuthHeader from "@/components/auth/AuthHeader";
+import AuthInput from "@/components/auth/AuthInput";
+import { colors, spacing } from "@/constants/theme";
 
 export default function RegisterScreen() {
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
-      <ScrollView
-        contentContainerStyle={styles.content}
-        keyboardShouldPersistTaps="handled"
+    <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <View style={styles.brandSection}>
-          <LocalFixBrand centered />
-        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.scrollContent}
+        >
+          <AuthHeader />
 
-        <View style={styles.formSection}>
-          <Text style={styles.heading}>Create your account</Text>
-
-          <Text style={styles.description}>
-            Join your community and start reporting local issues.
-          </Text>
-
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Full name</Text>
-
-            <TextInput
-              placeholder="Enter your full name"
-              placeholderTextColor={colors.textMuted}
-              style={styles.input}
-            />
-          </View>
-
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Email</Text>
-
-            <TextInput
-              placeholder="Enter your email"
-              placeholderTextColor={colors.textMuted}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              style={styles.input}
-            />
-          </View>
-
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Password</Text>
-
-            <TextInput
-              placeholder="Create a password"
-              placeholderTextColor={colors.textMuted}
-              secureTextEntry
-              style={styles.input}
-            />
-          </View>
-
-          <View style={styles.inputGroup}>
-            <Text style={styles.label}>Confirm password</Text>
-
-            <TextInput
-              placeholder="Confirm your password"
-              placeholderTextColor={colors.textMuted}
-              secureTextEntry
-              style={styles.input}
-            />
-          </View>
-
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Create Account</Text>
-          </View>
-
-          <View style={styles.loginRow}>
-            <Text style={styles.loginText}>
-              Already have an account?
+          <View style={styles.formCard}>
+            <Text style={styles.heading}>
+              Create Account
             </Text>
 
-            <Link
-              href="/(auth)/login"
-              style={styles.loginLink}
-            >
-              Sign in
-            </Link>
-          </View>
-        </View>
+            <Text style={styles.description}>
+              Join your community and help build a better city.
+            </Text>
 
-        <Text style={styles.footer}>
-          Your reports help create better communities.
-        </Text>
-      </ScrollView>
-    </KeyboardAvoidingView>
+            <View style={styles.form}>
+              <AuthInput
+                icon="person-outline"
+                placeholder="Full Name"
+                autoCapitalize="words"
+                autoComplete="name"
+              />
+
+              <AuthInput
+                icon="mail-outline"
+                placeholder="Email Address"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoComplete="email"
+              />
+
+              <AuthInput
+                icon="lock-closed-outline"
+                placeholder="Password"
+                secureTextEntry
+                autoComplete="new-password"
+              />
+
+              <AuthInput
+                icon="shield-checkmark-outline"
+                placeholder="Confirm Password"
+                secureTextEntry
+              />
+
+              <Pressable style={styles.createButton}>
+                <Text style={styles.createButtonText}>
+                  Create Account
+                </Text>
+              </Pressable>
+
+              <View style={styles.loginRow}>
+                <Text style={styles.loginText}>
+                  Already have an account?
+                </Text>
+
+                <Link
+                  href="/(auth)/login"
+                  style={styles.loginLink}
+                >
+                  Login
+                </Link>
+              </View>
+            </View>
+
+            <Text style={styles.footer}>
+              Report • Track • Improve
+            </Text>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#EAF2FF",
+  },
   container: {
     flex: 1,
-    backgroundColor: colors.background,
   },
-
-  content: {
+  scrollContent: {
     flexGrow: 1,
-    justifyContent: "center",
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.xxxl,
+    backgroundColor: "#EAF2FF",
   },
-
-  brandSection: {
-    alignItems: "center",
-    marginBottom: spacing.xxxl,
-  },
-
-  formSection: {
+  formCard: {
+    flex: 1,
     width: "100%",
-    maxWidth: 460,
+    maxWidth: 480,
     alignSelf: "center",
+    paddingHorizontal: spacing.xl,
+    paddingTop: spacing.xl,
+    paddingBottom: spacing.xxl,
+    marginTop: -12,
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    backgroundColor: "#F8FAFF",
   },
-
   heading: {
-    color: colors.text,
-    ...typography.heading,
+    color: "#071B50",
+    fontSize: 22,
+    fontWeight: "800",
   },
-
   description: {
-    marginTop: spacing.sm,
-    marginBottom: spacing.xxl,
-    color: colors.textSecondary,
-    lineHeight: 22,
-    ...typography.body,
+    marginTop: 4,
+    marginBottom: spacing.xl,
+    color: "#526789",
+    fontSize: 13,
+    lineHeight: 19,
   },
-
-  inputGroup: {
-    marginBottom: spacing.lg,
+  form: {
+    gap: spacing.md,
   },
-
-  label: {
-    marginBottom: spacing.sm,
-    color: colors.text,
-    ...typography.bodyMedium,
-  },
-
-  input: {
-    height: 52,
-    paddingHorizontal: spacing.lg,
-    color: colors.text,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radius.lg,
-    fontSize: 16,
-  },
-
-  button: {
-    height: 52,
+  createButton: {
+    height: 48,
     alignItems: "center",
     justifyContent: "center",
     marginTop: spacing.sm,
-    backgroundColor: colors.primary,
-    borderRadius: radius.lg,
+    borderRadius: 25,
+    backgroundColor: "#075BFF",
+    shadowColor: "#075BFF",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.18,
+    shadowRadius: 7,
+    elevation: 4,
   },
-
-  buttonText: {
+  createButtonText: {
     color: colors.white,
-    ...typography.bodyMedium,
+    fontSize: 14,
+    fontWeight: "800",
   },
-
   loginRow: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
-    marginTop: spacing.xxl,
-    gap: spacing.xs,
+    justifyContent: "center",
+    gap: 5,
+    marginTop: spacing.md,
   },
-
   loginText: {
-    color: colors.textSecondary,
-    ...typography.caption,
+    color: "#526789",
+    fontSize: 12,
   },
-
   loginLink: {
     color: colors.primary,
-    fontWeight: "600",
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: "800",
+    textDecorationLine: "underline",
   },
-
   footer: {
-    marginTop: spacing.xxxl,
+    marginTop: spacing.xxl,
+    color: "#8A9DBB",
+    fontSize: 10,
     textAlign: "center",
-    color: colors.textMuted,
-    ...typography.small,
   },
 });
