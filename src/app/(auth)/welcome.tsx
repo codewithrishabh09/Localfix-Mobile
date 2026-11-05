@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(235, 245, 255, 0.10)",
+    backgroundColor: "rgba(235, 245, 255, 0.04)",
   },
 
   safeArea: {
@@ -93,7 +93,12 @@ const styles = StyleSheet.create({
     maxWidth: 430,
     alignSelf: "center",
     alignItems: "center",
+    paddingHorizontal: spacing.xl,
+    paddingTop: spacing.xxl,
     paddingBottom: spacing.xxl,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: "rgba(242, 248, 255, 0.96)",
   },
 
   heading: {

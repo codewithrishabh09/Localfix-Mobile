@@ -9,12 +9,14 @@ import LocalFixBrand from "@/components/brand/LocalFixBrand";
 export default function AuthHeader() {
   return (
     <ImageBackground
-      source={require("../../assets/landing.jpg")}
+      source={require("@/assets/landing.jpg")}
       resizeMode="cover"
       style={styles.container}
     >
       <View style={styles.overlay}>
-        <LocalFixBrand centered compact />
+        <View style={styles.brandSurface}>
+          <LocalFixBrand centered compact />
+        </View>
       </View>
     </ImageBackground>
   );
@@ -22,7 +24,7 @@ export default function AuthHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 210,
+    height: 205,
     justifyContent: "center",
     overflow: "hidden",
   },
@@ -31,7 +33,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.20)",
+    backgroundColor: "rgba(5, 35, 92, 0.12)",
+  },
+
+  brandSurface: {
+    minWidth: 285,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 18,
+    backgroundColor: "rgba(7, 38, 94, 0.72)",
   },
 });
