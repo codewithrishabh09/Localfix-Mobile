@@ -14,31 +14,35 @@ import { colors, spacing } from "@/constants/theme";
 export default function WelcomeScreen() {
   return (
     <ImageBackground
-      source={require("../../assets/localfix-cityscape-reference.png")}
+      source={require("../../assets/welcome.png")}
       resizeMode="cover"
       style={styles.background}
     >
       <View style={styles.overlay}>
         <SafeAreaView style={styles.safeArea}>
-          <View style={styles.brandSection}>
+          <View style={styles.brand}>
             <LocalFixBrand centered />
-
-            <Text style={styles.tagline}>
-              Report • Track • Improve
-            </Text>
           </View>
 
-          <View style={styles.content}>
-            <Text style={styles.slogan}>
+          <View style={styles.bottomContent}>
+            <Text style={styles.heading}>
               Together for a{"\n"}Better City
             </Text>
 
+            <Text style={styles.description}>
+              Report local problems, track progress,
+              and help improve your community.
+            </Text>
+
             <Link href="/(auth)/login" asChild>
-              <Pressable style={styles.primaryButton}>
-                <Text style={styles.primaryButtonText}>
+              <Pressable style={styles.button}>
+                <Text style={styles.buttonText}>
                   Get Started
                 </Text>
-                <Text style={styles.arrow}>→</Text>
+
+                <Text style={styles.arrow}>
+                  →
+                </Text>
               </Pressable>
             </Link>
 
@@ -64,79 +68,89 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: "#06265D",
+    backgroundColor: "#EAF4FF",
   },
+
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 24, 75, 0.28)",
+    backgroundColor: "rgba(235, 245, 255, 0.10)",
   },
+
   safeArea: {
     flex: 1,
     justifyContent: "space-between",
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.xl,
   },
-  brandSection: {
+
+  brand: {
     alignItems: "center",
-    marginTop: spacing.xxxl,
+    marginTop: spacing.xxl,
   },
-  tagline: {
-    color: colors.white,
-    fontSize: 13,
-    fontWeight: "700",
-    letterSpacing: 1,
-    marginTop: -spacing.sm,
-  },
-  content: {
+
+  bottomContent: {
     width: "100%",
-    maxWidth: 420,
+    maxWidth: 430,
     alignSelf: "center",
     alignItems: "center",
     paddingBottom: spacing.xxl,
   },
-  slogan: {
-    color: colors.white,
+
+  heading: {
+    color: "#08235D",
     fontSize: 32,
+    lineHeight: 39,
     fontWeight: "800",
     textAlign: "center",
-    lineHeight: 40,
-    marginBottom: spacing.xxl,
   },
-  primaryButton: {
-    minHeight: 54,
+
+  description: {
+    maxWidth: 340,
+    marginTop: spacing.md,
+    marginBottom: spacing.xxl,
+    color: "#526789",
+    fontSize: 13,
+    lineHeight: 20,
+    textAlign: "center",
+  },
+
+  button: {
     width: "100%",
+    minHeight: 54,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 30,
-    backgroundColor: "#075BFF",
-    borderWidth: 1,
-    borderColor: "#55D8FF",
+    borderRadius: 28,
+    backgroundColor: colors.primary,
   },
-  primaryButtonText: {
+
+  buttonText: {
     color: colors.white,
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "800",
   },
+
   arrow: {
-    color: colors.white,
-    fontSize: 20,
     marginLeft: spacing.sm,
+    color: colors.white,
+    fontSize: 21,
   },
+
   loginRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.xs,
-    marginTop: spacing.xl,
+    marginTop: spacing.lg,
   },
+
   loginText: {
-    color: colors.white,
+    color: "#526789",
     fontSize: 12,
   },
+
   loginLink: {
-    color: colors.white,
+    color: colors.primary,
     fontSize: 12,
     fontWeight: "800",
-    textDecorationLine: "underline",
   },
 });

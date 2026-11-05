@@ -15,7 +15,7 @@ export default function HomeHeroCard() {
   return (
     <View style={styles.wrapper}>
       <ImageBackground
-        source={require("../../assets/localfix-cityscape-reference.png")}
+        source={require("@/assets/landing.jpg")}
         resizeMode="cover"
         imageStyle={styles.image}
         style={styles.card}

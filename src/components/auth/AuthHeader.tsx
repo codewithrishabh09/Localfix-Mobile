@@ -9,7 +9,7 @@ import LocalFixBrand from "@/components/brand/LocalFixBrand";
 export default function AuthHeader() {
   return (
     <ImageBackground
-      source={require("../../assets/localfix-cityscape-reference.png")}
+      source={require("../../assets/landing.jpg")}
       resizeMode="cover"
       style={styles.container}
     >
@@ -22,14 +22,16 @@ export default function AuthHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 175,
+    height: 210,
     justifyContent: "center",
-    backgroundColor: "#DCEBFF",
+    overflow: "hidden",
   },
+
   overlay: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(9, 54, 130, 0.12)",
+    paddingHorizontal: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.20)",
   },
 });

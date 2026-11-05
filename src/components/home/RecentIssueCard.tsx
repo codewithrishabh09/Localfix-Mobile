@@ -16,7 +16,7 @@ export default function RecentIssueCard() {
   return (
     <View style={styles.card}>
       <Image
-        source={require("../../assets/localfix-pothole-reference.png")}
+        source={require("@/assets/landing.jpg")}
         style={styles.image}
         resizeMode="cover"
       />

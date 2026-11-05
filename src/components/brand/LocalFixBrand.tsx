@@ -10,9 +10,14 @@ export default function LocalFixBrand({
   centered = false,
 }: LocalFixBrandProps) {
   return (
-    <View style={[styles.container, centered && styles.centered]}>
+    <View
+      style={[
+        styles.container,
+        centered && styles.centered,
+      ]}
+    >
       <Image
-        source={require("../../assets/localfix-logo-reference.png")}
+        source={require("@/assets/full-logo.png")}
         resizeMode="contain"
         style={[
           styles.logo,
@@ -27,15 +32,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "flex-start",
   },
+
   centered: {
     alignItems: "center",
   },
+
   logo: {
-    width: 270,
+    width: 310,
     height: 100,
   },
+
   compactLogo: {
-    width: 190,
-    height: 70,
+    width: 230,
+    height: 75,
   },
 });
