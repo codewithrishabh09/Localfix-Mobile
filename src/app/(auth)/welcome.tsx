@@ -14,7 +14,7 @@ import { colors, spacing } from "@/constants/theme";
 export default function WelcomeScreen() {
   return (
     <ImageBackground
-      source={require("../../assets/welcome.png")}
+      source={require("../../assets/home.png")}
       resizeMode="cover"
       style={styles.background}
     >

@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -9,17 +9,86 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 import AuthHeader from "@/components/auth/AuthHeader";
 import AuthInput from "@/components/auth/AuthInput";
 import { colors, spacing } from "@/constants/theme";
+import { register } from "@/features/auth/authApi";
+import { useAuth } from "@/features/auth/AuthContext";
 
 export default function RegisterScreen() {
+  const router = useRouter();
+
+  const { signIn } = useAuth();
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
+
+  const [isSubmitting, setIsSubmitting] =
+    useState(false);
+
+  const [error, setError] = useState("");
+
+  async function handleRegister() {
+    if (
+      !fullName.trim() ||
+      !email.trim() ||
+      !password ||
+      !confirmPassword
+    ) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    try {
+      setError("");
+      setIsSubmitting(true);
+
+      await register({
+        full_name: fullName.trim(),
+        email: email.trim(),
+        password,
+      });
+
+      await signIn({
+        email: email.trim(),
+        password,
+      });
+
+      router.replace("/(tabs)/home");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to create account.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
-    <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
+    <SafeAreaView
+      style={styles.safeArea}
+      edges={["top", "bottom"]}
+    >
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior={
+          Platform.OS === "ios"
+            ? "padding"
+            : undefined
+        }
       >
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -34,13 +103,16 @@ export default function RegisterScreen() {
             </Text>
 
             <Text style={styles.description}>
-              Join your community and help build a better city.
+              Join your community and help build a better
+              city.
             </Text>
 
             <View style={styles.form}>
               <AuthInput
                 icon="person-outline"
                 placeholder="Full Name"
+                value={fullName}
+                onChangeText={setFullName}
                 autoCapitalize="words"
                 autoComplete="name"
               />
@@ -48,6 +120,8 @@ export default function RegisterScreen() {
               <AuthInput
                 icon="mail-outline"
                 placeholder="Email Address"
+                value={email}
+                onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoComplete="email"
@@ -56,6 +130,8 @@ export default function RegisterScreen() {
               <AuthInput
                 icon="lock-closed-outline"
                 placeholder="Password"
+                value={password}
+                onChangeText={setPassword}
                 secureTextEntry
                 autoComplete="new-password"
               />
@@ -63,12 +139,38 @@ export default function RegisterScreen() {
               <AuthInput
                 icon="shield-checkmark-outline"
                 placeholder="Confirm Password"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
                 secureTextEntry
               />
 
-              <Pressable style={styles.createButton}>
+              {error ? (
+                <View style={styles.errorBox}>
+                  <Ionicons
+                    name="alert-circle-outline"
+                    size={16}
+                    color={colors.danger}
+                  />
+
+                  <Text style={styles.errorText}>
+                    {error}
+                  </Text>
+                </View>
+              ) : null}
+
+              <Pressable
+                style={({ pressed }) => [
+                  styles.createButton,
+                  pressed && styles.pressed,
+                  isSubmitting && styles.disabled,
+                ]}
+                onPress={handleRegister}
+                disabled={isSubmitting}
+              >
                 <Text style={styles.createButtonText}>
-                  Create Account
+                  {isSubmitting
+                    ? "Creating Account..."
+                    : "Create Account"}
                 </Text>
               </Pressable>
 
@@ -101,13 +203,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#EAF2FF",
   },
+
   container: {
     flex: 1,
   },
+
   scrollContent: {
     flexGrow: 1,
     backgroundColor: "#EAF2FF",
   },
+
   formCard: {
     flex: 1,
     width: "100%",
@@ -121,11 +226,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     backgroundColor: "#F8FAFF",
   },
+
   heading: {
     color: "#071B50",
     fontSize: 22,
     fontWeight: "800",
   },
+
   description: {
     marginTop: 4,
     marginBottom: spacing.xl,
@@ -133,9 +240,28 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 19,
   },
+
   form: {
     gap: spacing.md,
   },
+
+  errorBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    borderRadius: 10,
+    backgroundColor: colors.dangerLight,
+  },
+
+  errorText: {
+    flex: 1,
+    color: colors.danger,
+    fontSize: 11,
+    fontWeight: "600",
+  },
+
   createButton: {
     height: 48,
     alignItems: "center",
@@ -143,17 +269,22 @@ const styles = StyleSheet.create({
     marginTop: spacing.sm,
     borderRadius: 25,
     backgroundColor: "#075BFF",
-    shadowColor: "#075BFF",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.18,
-    shadowRadius: 7,
-    elevation: 4,
   },
+
   createButtonText: {
     color: colors.white,
     fontSize: 14,
     fontWeight: "800",
   },
+
+  pressed: {
+    opacity: 0.8,
+  },
+
+  disabled: {
+    opacity: 0.55,
+  },
+
   loginRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -161,16 +292,19 @@ const styles = StyleSheet.create({
     gap: 5,
     marginTop: spacing.md,
   },
+
   loginText: {
     color: "#526789",
     fontSize: 12,
   },
+
   loginLink: {
     color: colors.primary,
     fontSize: 12,
     fontWeight: "800",
     textDecorationLine: "underline",
   },
+
   footer: {
     marginTop: spacing.xxl,
     color: "#8A9DBB",

@@ -95,7 +95,7 @@ export default function HomeScreen() {
 
           {/* Hero / Map Preview */}
           <ImageBackground
-            source={require("@/assets/welcome.png")}
+            source={require("@/assets/home.png")}
             resizeMode="cover"
             style={styles.hero}
             imageStyle={styles.heroImage}
